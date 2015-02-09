@@ -1,0 +1,161 @@
+public class OpenRun implements Feature {
+
+	@Override
+	public String calculate(BoardState state) {
+		//initialize variables
+		int player1runs = 0;
+		int player2runs = 0;
+		int currentpiece = 0;
+		int inrow = 0;
+		Boolean free = true;
+		
+		//vertical
+		// iterate through the positons on the board from which a vertical set of 4 tokens can start
+		/*
+		0 0 0 0 0 0 0  
+		0 1 0 0 0 0 0 
+		0 2 1 0 0 1 0 
+		* * * * * * *
+		* * * * * * *
+		* * * * * * * 
+		
+		*/
+		for (int x = 0; x < 7; x++){
+			for (int y = 0; y < 3; y++){
+				//init the owner of the run to nobody
+				int owner = 0;
+				free = true;
+				//check the positions of each of the 4 pieces
+				for (int piece = 0; piece < 4; piece++){
+					currentpiece = state.board[x][y+piece];
+					//if there's a token in a position
+					if (currentpiece != 0){
+						//if the run has not previously been attributed, attribute to current
+						if (owner == 0)
+							owner = currentpiece;
+						//if the run is blocked by the opposite player, mark as blocked
+						if (owner != currentpiece)
+							free = false;
+						inrow++;
+					}
+				}
+				if (free && inrow > 1){
+					if (owner == 1)
+						player1runs++;
+					if (owner == 2)
+						player2runs++;
+				}
+			}
+		}
+		System.out.println(player1runs+"  "+player2runs);
+		
+		//horizontal
+		/*
+		* * * * 0 0 0
+		* * * * 0 0 0
+		* * * * 0 0 0
+		* * * * 0 0 0
+		* * * * 0 0 0
+		* * * * 0 0 0		 
+		
+		*/
+		for (int y = 0; y < 6; y++){
+			for (int x = 0; x < 4; x++){
+				int owner = 0;
+				free = true;
+				for (int piece = 0; piece < 4; piece++){
+					currentpiece = state.board[x+piece][y];
+					if (currentpiece != 0){
+						//if the run has not previously been attributed
+						if (owner == 0)
+							owner = currentpiece;
+						//if the run is blocked by the opposite player, mark as blocked
+						if (owner != currentpiece)
+							free = false;
+						inrow++;
+					}
+				}
+				if (free && inrow > 1){
+					if (owner == 1)
+						player1runs++;
+					if (owner == 2)
+						player2runs++;
+				}
+			}
+		}
+		System.out.println(player1runs+"  "+player2runs);
+
+		//diagonals
+		/*0 0 0 * * * *
+		  0 0 0 * * * *
+		  0 0 0 * * * * 
+		  0 0 0 0 0 0 0 
+		  0 0 2 0 0 0 0 
+		  0 0 1 0 0 0 0 
+		   */
+		for (int x = 6; x > 2; x--){
+			for (int y = 5; y > 2; y--){
+				int owner = 0;
+				for (int piece = 0; piece < 4; piece++){
+					currentpiece = state.board[x-piece][y-piece];
+					//if the spot is taken
+					if (currentpiece != 0){
+						//if the run has not previously been attributed
+						if (owner == 0)
+							owner = currentpiece;
+						//if the run is blocked by the opposite player, mark as blocked
+						if (owner != currentpiece)
+							free = false;
+						inrow++;
+					}
+				}
+				if (free && inrow > 1){
+					if (owner == 1)
+						player1runs++;
+					if (owner == 2)
+						player2runs++;
+				}
+			}
+		}
+		/*0 0 0 0 0 0 0 
+		  0 0 2 0 0 0 0 
+		  0 0 1 0 0 0 0 
+		  * * * * 0 0 0 
+		  * * * * 0 0 0 
+		  * * * * 2 0 0 */
+		for (int x = 0; x < 4; x++){
+			for (int y = 0; y < 3; y++){
+				int owner = 0;
+				for (int piece = 0; piece < 4; piece++){
+					//if the spot is taken
+					currentpiece = state.board[x+piece][y+piece];
+					if (currentpiece != 0){
+						//if the run has not previously been attributed
+						if (owner == 0)
+							owner = currentpiece;
+						//if the run is blocked by the opposite player, mark as blocked
+						if (owner != currentpiece)
+							free = false;
+						inrow++;
+					}
+				}
+				if (free && inrow > 1){
+					if (owner == 1)
+						player1runs++;
+					if (owner == 2)
+						player2runs++;
+				}
+			}
+		}
+		
+		System.out.println(player1runs+"  "+player2runs);
+		
+		return null;
+	}
+
+	@Override
+	public String featureName() {
+		return "OpenRun";
+	}
+
+}

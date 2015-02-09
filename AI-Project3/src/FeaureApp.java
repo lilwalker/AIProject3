@@ -11,10 +11,11 @@ public class FeaureApp {
 		ArrayList<Feature> features = new ArrayList<Feature>();
 		features.add(new CenterTokens());
 		//features.add(new PlayerTurn());
-		features.add(new TwoAndThree());
+		//features.add(new TwoAndThree());
 		features.add(new HorizontalCenterWeightedScore());
 		features.add(new HighestPiece());
 		features.add(new NumberOfTotalPieces());
+		features.add(new OpenRun());
 		reader.calculateTestDataRange(0,10,features);
 	}
 

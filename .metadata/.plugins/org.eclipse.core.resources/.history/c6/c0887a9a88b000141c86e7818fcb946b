@@ -1,0 +1,90 @@
+
+public class OpenRun implements Feature {
+
+	@Override
+	public String calculate(BoardState state) {
+		int player1twos = 0;
+		int player2twos = 0;
+		int player1threes = 0;
+		int player2threes = 0;
+		int lastpiece = 0;
+		int inrow = 1;
+		//vertical
+		for (int x = 0; x < 7; x++){
+			lastpiece = 0;
+			inrow = 1;
+			for (int y = 0; y < 6; y++){
+				if (state.board[x][y] == lastpiece){
+					inrow++;
+				}
+				else{
+					if (inrow == 2 && lastpiece == 1)
+						player1twos++;
+					if (inrow == 3 && lastpiece == 1)
+						player1threes++;
+					if (inrow == 2 && lastpiece == 2)
+						player2twos++;
+					if (inrow == 3 && lastpiece == 2)
+						player2threes++;
+					inrow = 1;
+					lastpiece = state.board[x][y];
+				}
+			}
+		}
+		System.out.println(player1twos+"  "+player1threes+"  "+player2twos+"  "+player2threes+"  ");
+		//horizontal
+		for (int y = 0; y < 6; y++){
+			lastpiece = 0;
+			inrow = 1;
+			for (int x = 0; x < 7; x++){
+				//System.out.println(x+"  "+y+"  "+inrow+"  "+lastpiece+"  ");
+				if (state.board[x][y] == lastpiece){
+					inrow++;
+				}
+				else{
+					if (inrow == 2 && lastpiece == 1)
+						player1twos++;
+					if (inrow == 3 && lastpiece == 1)
+						player1threes++;
+					if (inrow == 2 && lastpiece == 2)
+						player2twos++;
+					if (inrow == 3 && lastpiece == 2)
+						player2threes++;
+					inrow = 1;
+					lastpiece = state.board[x][y];
+				}
+			}
+		}
+		lastpiece = 0;
+		inrow = 1;
+		System.out.println(player1twos+"  "+player1threes+"  "+player2twos+"  "+player2threes+"  ");
+		//diagonals
+		/*0 0 0 0 0 0 0 
+		  0 0 2 0 0 0 0 
+		  0 0 1 0 0 0 0 
+		  * * * * 0 0 0 
+		  * * * * 0 0 0 
+		  * * * * 2 0 0 */
+		for (int x = 0; x < 4; x++){
+			for (int y = 0; y < 3; y++){
+				int owner = 0;
+				for (int piece = 0; piece < 4; piece++){
+					if (state.board[x+piece][y+piece] != 0){
+						
+					}
+				}
+			}
+		}
+		
+		
+		System.out.println(player1twos+"  "+player1threes+"  "+player2twos+"  "+player2threes+"  ");
+		
+		return null;
+	}
+
+	@Override
+	public String featureName() {
+		return "TwoAndThree";
+	}
+
+}
