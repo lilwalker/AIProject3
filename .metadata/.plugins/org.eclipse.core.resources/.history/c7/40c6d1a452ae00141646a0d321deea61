@@ -1,0 +1,14 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+
+public class FeaureApp {
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+
+		Reader reader = new Reader("trainingcsv.csv");
+		reader.importTestDataRange(5,7);
+	}
+
+}

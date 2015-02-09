@@ -1,0 +1,22 @@
+import java.util.ArrayList;
+
+
+public class BoardState {
+
+	int[][] board;
+	Integer winner;
+	
+	BoardState(String[] strings){
+		System.out.println(strings[0]);
+		this.board = new int[7][6];
+		for (int i=0; i<strings.length-1; i++){
+			System.out.println(strings[i] + "  "+i);
+			int x = i%6;
+			int y = i-(6*x);
+			System.out.println("x:"+x + "  y: "+y);
+			this.board[x][y] = Integer.valueOf(strings[i]);
+		}
+		this.winner = Integer.valueOf(strings[42]);
+	}
+	
+}

@@ -1,0 +1,17 @@
+
+public class CenterTokens implements Feature {
+	
+	BoardState board;
+	
+	CenterTokens(BoardState board){
+		this.board = board;
+	}
+	
+	@Override
+	public void calculate() {
+		
+		System.out.println(board[4]);
+		
+	}
+
+}

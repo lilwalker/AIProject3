@@ -1,0 +1,24 @@
+
+public class PlayerTurn implements Feature{
+
+	@Override
+	public Integer calculate(BoardState state) {
+		int tokens = 0;
+		for(int x = 0; x < 7; x++){
+			for (int y = 0; y < 6; y++){
+				if (state.board[x][y]!=1)
+					tokens++;
+			}
+		}
+		if (tokens%2 == 0)
+			return 1;
+		else 
+			return 2;
+	}
+
+	@Override
+	public String featureName() {
+		return "PlayerTurn";
+	}
+
+}

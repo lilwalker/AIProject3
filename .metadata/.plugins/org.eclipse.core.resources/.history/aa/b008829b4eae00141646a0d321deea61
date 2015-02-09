@@ -1,0 +1,13 @@
+import java.util.ArrayList;
+
+
+public class BoardState {
+
+	ArrayList<Integer> board;
+	Integer winner;
+	
+	BoardState(String boardstring){
+		System.out.println(boardstring);
+	}
+	
+}

@@ -1,0 +1,16 @@
+
+public class TwoAndThree implements Feature {
+
+	@Override
+	public String calculate(BoardState state) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String featureName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

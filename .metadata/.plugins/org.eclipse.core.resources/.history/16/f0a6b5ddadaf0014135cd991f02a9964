@@ -1,0 +1,6 @@
+
+public interface Feature { 
+	
+	Integer calculate(BoardState state);
+	
+}

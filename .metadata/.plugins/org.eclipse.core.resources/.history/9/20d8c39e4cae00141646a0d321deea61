@@ -1,0 +1,11 @@
+
+public class FeaureApp {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Reader reader = new Reader("trainingcsv.csv");
+		
+	}
+
+}

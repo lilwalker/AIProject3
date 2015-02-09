@@ -1,0 +1,63 @@
+
+public class TwoAndThree implements Feature {
+
+	@Override
+	public String calculate(BoardState state) {
+		int player1twos = 0;
+		int player2twos = 0;
+		int player1threes = 0;
+		int player2threes = 0;
+		int lastpiece = 0;
+		int inrow = 0;
+		//vertical
+		for (int x = 0; x < 7; x++){
+			for (int y = 0; y < 6; y++){
+				System.out.println(x+"  "+y+"  "+inrow+"  "+lastpiece+"  ");
+				if (state.board[x][y] == lastpiece){
+					inrow++;
+				}
+				else{
+					if (inrow == 2 && lastpiece == 1)
+						player1twos++;
+					if (inrow == 3 && lastpiece == 1)
+						player1threes++;
+					if (inrow == 2 && lastpiece == 2)
+						player2twos++;
+					if (inrow == 3 && lastpiece == 2)
+						player2threes++;
+					inrow = 0;
+					lastpiece = state.board[x][y];
+				}
+			}
+		}
+		System.out.println(player1twos+"  "+player1threes+"  "+player2twos+"  "+player2threes+"  ");
+		//horizontal
+		for (int y = 0; y < 6; y++){
+			for (int x = 0; x < 7; x++){
+				if (state.board[x][y] == lastpiece){
+					inrow++;
+				}
+				else{
+					if (inrow == 2 && lastpiece == 1)
+						player1twos++;
+					if (inrow == 3 && lastpiece == 1)
+						player1threes++;
+					if (inrow == 2 && lastpiece == 2)
+						player2twos++;
+					if (inrow == 3 && lastpiece == 2)
+						player2threes++;
+					inrow = 0;
+					lastpiece = state.board[x][y];
+				}
+			}
+		}
+		System.out.println(player1twos+"  "+player1threes+"  "+player2twos+"  "+player2threes+"  ");
+		return null;
+	}
+
+	@Override
+	public String featureName() {
+		return "TwoAndThree";
+	}
+
+}

@@ -1,0 +1,67 @@
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
+
+public class Reader {
+	
+	String file;
+	
+	Reader(String name){
+		this.file = name;
+	}
+	
+	public void importTestData() throws IOException{
+		CSVReader reader = new CSVReader(new FileReader("DataFiles/trainingcsv.csv"));
+		reader.readNext();
+		new BoardState(reader.readNext());
+	}
+	
+	public void importTestDataRange(int top, int bottom) throws IOException{
+		CSVReader reader = new CSVReader(new FileReader("DataFiles/trainingcsv.csv"));
+		for (int i=0; i<=top; i++){
+			reader.readNext();
+		}
+		for (int j = top; j<bottom; j++){
+			new BoardState(reader.readNext());
+		}
+	}
+	
+	public void calculateTestDataRange(int top, int bottom, Feature[] features) throws IOException{
+		//create reader and writer
+		CSVReader reader = new CSVReader(new FileReader("DataFiles/trainingcsv.csv"));
+		CSVWriter writer = new CSVWriter(new FileWriter(this.file));
+		//add feature name to the first line of the csv file
+		String[] titlearray = reader.readNext();
+		ArrayList<String> title = new ArrayList<String> (Arrays.asList(titlearray));
+		for (int j = 0; j < features.length; j++)
+			title.add(features[j].featureName());
+		String[] titlearrayout = title.toArray(new String[title.size()]);
+		writer.writeNext(titlearrayout);
+		//read through csv till you get to the first requested row
+		for (int i=1; i<=top; i++){
+			reader.readNext();
+		}
+		//perform calculations on each board state in the requested range
+		for (int j = top; j<bottom; j++){
+			//read next string array
+			String[] nextLine = reader.readNext();
+			//convert string array to array list of string
+			ArrayList<String> nextLineList = new ArrayList<String> (Arrays.asList(nextLine));
+			//calculate next board from string array
+			BoardState nextBoard = new BoardState(nextLine);
+			//for each feature calculate the value and add it to the line
+			for (int h = 0; h<features.length; h++)
+				nextLineList.add(String.valueOf(features[h].calculate(nextBoard)));
+			//convert back and write to file
+			String[] boardout = nextLineList.toArray(new String[nextLineList.size()]);
+			writer.writeNext(boardout);
+		}
+	}
+	
+}

@@ -1,0 +1,18 @@
+import java.util.ArrayList;
+
+
+public class BoardState {
+
+	int[][] board;
+	Integer winner;
+	
+	BoardState(String[] strings){
+		System.out.println(strings[0]);
+		for (int i=0; i<strings.length; i++){
+			int x = i%6;
+			int y = i-(6*x);
+			board[x][y] = Integer.valueOf(strings[i]);
+		}
+	}
+	
+}

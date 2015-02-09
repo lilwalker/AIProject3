@@ -1,0 +1,22 @@
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
+import com.opencsv.CSVReader;
+
+public class Reader {
+	
+	String file;
+	
+	Reader(String name){
+		this.file = name;
+	}
+	
+	public void main(){
+		
+	}
+	
+	public void importTestData() throws FileNotFoundException{
+		CSVReader reader = new CSVReader(new FileReader("DataFiles/trainingcsv.csv"));
+	}
+	
+}

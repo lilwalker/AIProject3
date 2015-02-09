@@ -1,0 +1,31 @@
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+import com.opencsv.CSVReader;
+
+public class Reader {
+	
+	String file;
+	
+	Reader(String name){
+		this.file = name;
+	}
+	
+	public void importTestData() throws IOException{
+		CSVReader reader = new CSVReader(new FileReader("DataFiles/trainingcsv.csv"));
+		reader.readNext();
+		new BoardState(reader.readNext());
+	}
+	
+	public void importTestDataRange(int top, int bottom) throws IOException{
+		CSVReader reader = new CSVReader(new FileReader("DataFiles/trainingcsv.csv"));
+		for (int i=0; i<=top; i++){
+			reader.readNext();
+		}
+		for (int j = top; j<bottom; j++){
+			new BoardState(reader.readNext());
+		}
+	}
+	
+}
