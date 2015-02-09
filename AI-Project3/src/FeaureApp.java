@@ -1,4 +1,3 @@
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -13,6 +12,9 @@ public class FeaureApp {
 		features.add(new CenterTokens());
 		//features.add(new PlayerTurn());
 		features.add(new TwoAndThree());
+		features.add(new HorizontalCenterWeightedScore());
+		features.add(new HighestPiece());
+		features.add(new NumberOfTotalPieces());
 		reader.calculateTestDataRange(0,10,features);
 	}
 

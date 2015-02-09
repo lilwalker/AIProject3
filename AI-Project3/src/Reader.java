@@ -1,4 +1,3 @@
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -20,6 +19,7 @@ public class Reader {
 		CSVReader reader = new CSVReader(new FileReader("DataFiles/trainingcsv.csv"));
 		reader.readNext();
 		new BoardState(reader.readNext());
+		reader.close();
 	}
 	
 	public void importTestDataRange(int top, int bottom) throws IOException{
@@ -30,6 +30,7 @@ public class Reader {
 		for (int j = top; j<bottom; j++){
 			new BoardState(reader.readNext());
 		}
+		reader.close();
 	}
 	
 	public void calculateTestDataRange(int top, int bottom, ArrayList<Feature> features) throws IOException{
@@ -62,6 +63,8 @@ public class Reader {
 			String[] boardout = nextLineList.toArray(new String[nextLineList.size()]);
 			writer.writeNext(boardout);
 		}
+		reader.close();
+		writer.close();
 	}
 	
 }
