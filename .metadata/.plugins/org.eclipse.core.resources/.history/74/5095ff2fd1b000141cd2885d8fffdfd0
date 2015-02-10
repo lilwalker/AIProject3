@@ -152,7 +152,7 @@ public class OpenRun implements Feature {
 				}
 			}
 		}
-		//System.out.println(player1runs+"  "+player2runs);
+		
 		return Integer.toString(player1runs - player2runs);
 	}
 

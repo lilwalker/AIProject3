@@ -16,8 +16,7 @@ public class FeaureApp {
 		features.add(new HighestPiece());
 		//features.add(new NumberOfTotalPieces());
 		features.add(new OpenRun());
-		features.add(new OpenFirstLevel());
-		reader.calculateTestDataRange(0,1000,features);
+		reader.calculateTestDataRange(0,10,features);
 	}
 
 }

@@ -149,7 +149,7 @@ public class TwoAndThree implements Feature {
 		}
 		System.out.println(player1threes+"  "+player2threes);
 		
-		return Integer.toString(player1threes - player2threes);
+		return null;
 	}
 
 	@Override
