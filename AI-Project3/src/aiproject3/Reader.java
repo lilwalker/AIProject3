@@ -53,6 +53,7 @@ public class Reader {
 		for (int j = top; j<bottom; j++){
 			//read next string array
 			String[] nextLine = reader.readNext();
+			if (nextLine == null) continue;
 			//convert string array to array list of string
 			ArrayList<String> nextLineList = new ArrayList<String> (Arrays.asList(nextLine));
 			//calculate next board from string array
