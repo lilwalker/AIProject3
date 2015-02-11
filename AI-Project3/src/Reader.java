@@ -33,9 +33,9 @@ public class Reader {
 		reader.close();
 	}
 	
-	public void calculateTestDataRange(int top, int bottom, ArrayList<Feature> features) throws IOException{
+	public void calculateTestDataRange(String whatToRead, int top, int bottom, ArrayList<Feature> features) throws IOException{
 		//create reader and writer
-		CSVReader reader = new CSVReader(new FileReader("DataFiles/trainingcsv.csv"));
+		CSVReader reader = new CSVReader(new FileReader(whatToRead));
 		CSVWriter writer = new CSVWriter(new FileWriter(this.file));
 		//add feature name to the first line of the csv file
 		String[] titlearray = reader.readNext();

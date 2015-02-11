@@ -6,8 +6,15 @@ public class FeaureApp {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
+		
+		String infile = "DataFiles/trainingcsv.csv";
+		
+		if (args.length > 0) {
+			infile = args[0];
+		}
+		String outfile = "trainingcsvout.csv";
 
-		Reader reader = new Reader("DataFiles/trainingcsvout.csv");
+		Reader reader = new Reader(outfile);
 		ArrayList<Feature> features = new ArrayList<Feature>();
 		features.add(new CenterTokens());
 		//features.add(new PlayerTurn());
@@ -18,7 +25,7 @@ public class FeaureApp {
 		features.add(new OpenRun());
 		features.add(new OpenFirstLevel());
 		features.add(new HorizontalCenterWeightedScoreTimesOpenRun());
-		reader.calculateTestDataRange(0,1000,features);
+		reader.calculateTestDataRange(infile, 0,1000,features);
 	}
 
 }
