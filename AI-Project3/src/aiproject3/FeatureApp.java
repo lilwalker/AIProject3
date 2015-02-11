@@ -1,8 +1,9 @@
+package aiproject3;
 import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class FeaureApp {
+public class FeatureApp {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub

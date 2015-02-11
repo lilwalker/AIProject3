@@ -1,3 +1,4 @@
+package aiproject3;
 public class OpenRun implements Feature {
 
 	@Override
